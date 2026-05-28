@@ -272,3 +272,28 @@ RoleScopedRoutes
 - custom claims는 후순위 보강 옵션으로 유지
 - 실제 권한 enforcement는 Firebase Auth / user doc / security rules 단계에서 연결
 - 현재는 설계 문서화만 완료 상태
+
+## 3-1. 상태 전이 요약
+
+- `anonymous` -> 로그인 전 상태, 기본 진입 `/login`
+- `pending` -> 가입 후 승인 대기 상태, 기본 진입 `/pending`
+- `active` -> 승인 완료 상태, role별 home route로 이동
+- `suspended` -> 사용 중지 상태, `/suspended` 또는 접근 제한 화면으로 이동
+
+### role별 home route
+
+- `student` -> `/student`
+- `general_teacher` -> `/teacher`
+- `employment_teacher` -> `/employment`
+- `admin` -> `/admin`
+
+### 상태 전이 메모
+
+- `anonymous -> pending`: 가입 후 사용자 문서 생성 시점
+- `pending -> active`: 학교 승인 또는 운영 승인 완료 시점
+- `active -> suspended`: 계정 중지 또는 권한 제한 시점
+- `suspended -> active`: 운영 복구 승인 시점
+
+메모:
+- route guard는 user doc의 `status`와 `role`을 함께 읽어 판단한다.
+- 실제 접근 제한은 프론트 redirect만으로 끝나지 않으며, security rules에서도 같은 기준을 다시 적용해야 한다.
