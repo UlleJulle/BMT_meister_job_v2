@@ -1,0 +1,66 @@
+export const employmentApplicationSummaryItems = [
+  { label: "전체 지원", value: "18건" },
+  { label: "확인 필요", value: "5건" },
+  { label: "면접 예정", value: "4건" },
+  { label: "결과 대기", value: "6건" },
+] as const;
+
+export const employmentApplicationFilterItems = ["전체", "확인 필요", "서류 제출", "면접 예정", "결과 대기"] as const;
+
+export const employmentApplications = [
+  {
+    student: "김재윤",
+    classInfo: "기계과 · 3학년 2반",
+    company: "한빛정공",
+    jobTitle: "생산기술 보조 채용",
+    status: "확인 필요",
+    statusTone: "warning",
+    schedule: "서류 제출 05.29 · 면접 안내 확인 필요",
+    note: "추천서 첨부 여부 최종 점검 필요",
+    reviewer: "취업진로부 박교사",
+  },
+  {
+    student: "박서준",
+    classInfo: "전기과 · 3학년 1반",
+    company: "동해테크",
+    jobTitle: "설비 유지보수 인턴",
+    status: "면접 예정",
+    statusTone: "info",
+    schedule: "면접 예정 06.03 14:00",
+    note: "면접 질문 정리본 전달 완료",
+    reviewer: "취업진로부 최교사",
+  },
+  {
+    student: "이유나",
+    classInfo: "전자과 · 3학년 4반",
+    company: "미래에너지시스템",
+    jobTitle: "현장 배선 조립 채용",
+    status: "서류 제출",
+    statusTone: "neutral",
+    schedule: "서류 제출 05.28 · 결과 대기 중",
+    note: "지원서 접수 확인 완료",
+    reviewer: "취업진로부 김교사",
+  },
+  {
+    student: "최민재",
+    classInfo: "자동차과 · 3학년 3반",
+    company: "그린모빌리티",
+    jobTitle: "차량 조립 보조 채용",
+    status: "결과 대기",
+    statusTone: "neutral",
+    schedule: "결과 예정 06.05",
+    note: "추가 연락 여부 확인 예정",
+    reviewer: "취업진로부 박교사",
+  },
+  {
+    student: "정하윤",
+    classInfo: "기계과 · 3학년 1반",
+    company: "부산스마트팩토리",
+    jobTitle: "설비 운영 사원 모집",
+    status: "합격 확정",
+    statusTone: "success",
+    schedule: "합격 통보 05.27 · 배치 안내 필요",
+    note: "현장실습 연계 서류 준비 중",
+    reviewer: "취업진로부 최교사",
+  },
+] as const;
