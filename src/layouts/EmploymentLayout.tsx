@@ -3,6 +3,7 @@ import {
   BriefcaseBusiness,
   Building2,
   CalendarDays,
+  ClipboardCheck,
   ClipboardList,
   Home,
   Newspaper,
@@ -27,7 +28,8 @@ const navItems: EmploymentNavItem[] = [
   { icon: Users, label: "학생현황", to: routes.employment.students },
   { icon: CalendarDays, label: "일정", to: routes.employment.schedules },
   { icon: Newspaper, label: "콘텐츠", to: routes.employment.content },
-  { icon: BellRing, label: "참여조사", to: routes.employment.surveys },
+  { icon: ClipboardCheck, label: "참여조사", to: routes.employment.surveys },
+  { icon: BellRing, label: "알림", to: routes.employment.notifications },
 ];
 
 function renderNavItem(item: EmploymentNavItem, mobile = false) {
@@ -56,7 +58,7 @@ export function EmploymentLayout() {
           <div className={styles.identity}>
             <span className={styles.mark}>진</span>
             <div>
-              <strong>취업지원관리 시스템</strong>
+              <strong>취업진로관리 시스템</strong>
               <span>취업진로부 운영 포털</span>
             </div>
           </div>

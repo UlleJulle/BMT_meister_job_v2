@@ -9,6 +9,7 @@ import { EmploymentCompaniesPage } from "../pages/employment/EmploymentCompanies
 import { EmploymentContentPage } from "../pages/employment/EmploymentContentPage";
 import { EmploymentDashboardPage } from "../pages/employment/EmploymentDashboardPage";
 import { EmploymentJobsPage } from "../pages/employment/EmploymentJobsPage";
+import { EmploymentNotificationsPage } from "../pages/employment/EmploymentNotificationsPage";
 import { EmploymentSchedulesPage } from "../pages/employment/EmploymentSchedulesPage";
 import { EmploymentStudentsPage } from "../pages/employment/EmploymentStudentsPage";
 import { EmploymentSurveysPage } from "../pages/employment/EmploymentSurveysPage";
@@ -67,6 +68,7 @@ const router = createBrowserRouter([
       { path: "schedules", element: <EmploymentSchedulesPage /> },
       { path: "content", element: <EmploymentContentPage /> },
       { path: "surveys", element: <EmploymentSurveysPage /> },
+      { path: "notifications", element: <EmploymentNotificationsPage /> },
     ],
   },
   { path: "*", element: <Navigate to={routes.login} replace /> },

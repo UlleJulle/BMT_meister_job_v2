@@ -279,71 +279,129 @@
 
 @media (max-width: 760px) {
   .page {
-    gap: var(--space-3);
+    gap: 8px;
     padding-top: 2px;
   }
 
+  .eyebrow {
+    margin-bottom: 2px;
+    font-size: 10px;
+  }
+
   .title {
-    font-size: 19px;
+    font-size: 18px;
+    line-height: 1.22;
   }
 
   .description {
     overflow: hidden;
     max-width: none;
-    font-size: var(--text-xs);
+    font-size: 11px;
+    line-height: 1.4;
     white-space: nowrap;
     text-overflow: ellipsis;
   }
 
   .summaryGrid {
-    gap: 8px;
+    gap: 5px;
   }
 
-  .summaryCard,
+  .summaryCard {
+    gap: 0;
+    padding: 6px 8px;
+    border-radius: 10px;
+  }
+
+  .summaryLabel {
+    font-size: 10px;
+  }
+
+  .summaryValue {
+    font-size: 12px;
+  }
+
   .filterSection,
-  .listSection,
+  .listSection {
+    padding: 9px;
+  }
+
   .jobCard {
-    padding: 12px;
+    padding: 8px;
+    gap: 6px;
   }
 
   .filterHeader,
   .listHeader {
-    margin-bottom: 10px;
+    margin-bottom: 6px;
   }
 
   .filterRow {
-    gap: 6px;
+    gap: 4px;
   }
 
   .filterChip {
-    min-height: 34px;
-    padding: 0 10px;
+    min-height: 24px;
+    padding: 0 7px;
+    border-radius: 7px;
+    font-size: 10px;
+  }
+
+  .filterHint,
+  .listDescription {
+    display: none;
+  }
+
+  .filterTitle,
+  .listTitle {
+    font-size: 14px;
   }
 
   .cardTop {
-    gap: 10px;
+    gap: 6px;
     flex-direction: column;
   }
 
   .cardStatus {
     justify-content: flex-start;
+    gap: 4px;
   }
 
   .jobTitle {
-    font-size: 15px;
+    font-size: 14px;
+  }
+
+  .companyType,
+  .companyName,
+  .metaRow,
+  .deadlineLabel,
+  .note {
+    font-size: 10px;
+  }
+
+  .statusBadge {
+    min-height: 24px;
+    padding: 0 8px;
+    font-size: 10px;
   }
 
   .deadlineRow {
     align-items: flex-start;
+    gap: 8px;
+    padding-top: 6px;
+  }
+
+  .deadlineRow strong {
+    font-size: 11px;
   }
 
   .actionRow {
-    gap: 6px;
+    gap: 4px;
   }
 
   .primaryAction,
   .secondaryAction {
-    min-height: 36px;
-    padding: 0 10px;
+    min-height: 30px;
+    padding: 0 8px;
+    font-size: 10px;
   }
 }

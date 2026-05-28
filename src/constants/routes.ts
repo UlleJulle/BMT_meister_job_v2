@@ -32,6 +32,7 @@ export const routes = {
     schedules: "/employment/schedules",
     content: "/employment/content",
     surveys: "/employment/surveys",
+    notifications: "/employment/notifications",
   },
   admin: {
     root: "/admin",

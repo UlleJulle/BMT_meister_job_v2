@@ -228,48 +228,104 @@
 
 @media (max-width: 760px) {
   .page {
-    gap: var(--space-3);
+    gap: 8px;
     padding-top: 2px;
   }
 
+  .eyebrow {
+    margin-bottom: 2px;
+    font-size: 10px;
+  }
+
   .title {
-    font-size: 19px;
+    font-size: 18px;
+    line-height: 1.22;
   }
 
   .description {
     overflow: hidden;
     max-width: none;
-    font-size: var(--text-xs);
+    font-size: 11px;
+    line-height: 1.4;
     white-space: nowrap;
     text-overflow: ellipsis;
   }
 
   .kpiGrid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 8px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 5px;
   }
 
   .kpiCard {
-    gap: 3px;
-    padding: 12px;
+    gap: 0;
+    padding: 6px 8px;
+    border-radius: 10px;
+  }
+
+  .kpiLabel,
+  .kpiMeta {
+    font-size: 10px;
+  }
+
+  .kpiValue {
+    font-size: 12px;
+  }
+
+  .kpiMeta {
+    display: none;
   }
 
   .panelHeader {
-    padding: var(--space-3) var(--space-3) var(--space-2);
+    padding: 9px 9px 6px;
   }
 
   .panelBody {
-    padding: 0 var(--space-3) var(--space-3);
+    padding: 0 9px 9px;
+    gap: 6px;
+  }
+
+  .panelTitle {
+    font-size: 14px;
+  }
+
+  .panelText {
+    overflow: hidden;
+    margin-top: 2px;
+    font-size: 10px;
+    line-height: 1.35;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
 
   .distributionRow,
   .rankingRow,
   .alertRow {
     align-items: flex-start;
-    padding: 9px 0;
+    padding: 8px 0;
+  }
+
+  .distributionLabel,
+  .rankingLabel,
+  .alertTitle {
+    font-size: 11px;
+  }
+
+  .distributionMeta,
+  .rankingMeta,
+  .alertMeta,
+  .distributionValue,
+  .rankingValue {
+    font-size: 10px;
   }
 
   .barTrack {
     width: 82px;
+    margin-top: 4px;
+  }
+
+  .alertBadge {
+    min-height: 24px;
+    padding: 0 8px;
+    font-size: 10px;
   }
 }
