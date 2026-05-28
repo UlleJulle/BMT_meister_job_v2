@@ -3,6 +3,7 @@ export const routes = {
   signup: "/signup",
   resetPassword: "/reset-password",
   pending: "/pending",
+  suspended: "/suspended",
   student: {
     root: "/student",
     jobs: "/student/jobs",

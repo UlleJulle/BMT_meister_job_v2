@@ -1,9 +1,14 @@
 import { Navigate, RouterProvider, createBrowserRouter } from "react-router-dom";
+import { AuthenticatedGuard } from "./guards/AuthenticatedGuard";
+import { PendingGuard } from "./guards/PendingGuard";
+import { RoleGuard } from "./guards/RoleGuard";
+import { SuspendedGuard } from "./guards/SuspendedGuard";
 import { routes } from "../constants/routes";
 import { AppLayout } from "../layouts/AppLayout";
 import { AuthLayout } from "../layouts/AuthLayout";
 import { EmploymentLayout } from "../layouts/EmploymentLayout";
 import { TeacherLayout } from "../layouts/TeacherLayout";
+import { AdminHomePage } from "../pages/admin/AdminHomePage";
 import { EmploymentApplicationsPage } from "../pages/employment/EmploymentApplicationsPage";
 import { EmploymentCompaniesPage } from "../pages/employment/EmploymentCompaniesPage";
 import { EmploymentContentPage } from "../pages/employment/EmploymentContentPage";
@@ -15,6 +20,7 @@ import { EmploymentStudentsPage } from "../pages/employment/EmploymentStudentsPa
 import { EmploymentSurveysPage } from "../pages/employment/EmploymentSurveysPage";
 import { LoginPage } from "../pages/LoginPage";
 import { PendingPage } from "../pages/PendingPage";
+import { SuspendedPage } from "../pages/SuspendedPage";
 import { StudentContentPage } from "../pages/student/StudentContentPage";
 import { StudentHomePage } from "../pages/student/StudentHomePage";
 import { StudentJobsPage } from "../pages/student/StudentJobsPage";
@@ -32,11 +38,22 @@ const router = createBrowserRouter([
     children: [
       { path: routes.login, element: <LoginPage /> },
       { path: routes.pending, element: <PendingPage /> },
+      { path: routes.suspended, element: <SuspendedPage /> },
     ],
   },
   {
     path: routes.student.root,
-    element: <AppLayout />,
+    element: (
+      <AuthenticatedGuard>
+        <SuspendedGuard>
+          <PendingGuard>
+            <RoleGuard allowedRoles={["student"]}>
+              <AppLayout />
+            </RoleGuard>
+          </PendingGuard>
+        </SuspendedGuard>
+      </AuthenticatedGuard>
+    ),
     children: [
       { index: true, element: <StudentHomePage /> },
       { path: "jobs", element: <StudentJobsPage /> },
@@ -47,7 +64,17 @@ const router = createBrowserRouter([
   },
   {
     path: routes.teacher.root,
-    element: <TeacherLayout />,
+    element: (
+      <AuthenticatedGuard>
+        <SuspendedGuard>
+          <PendingGuard>
+            <RoleGuard allowedRoles={["general_teacher"]}>
+              <TeacherLayout />
+            </RoleGuard>
+          </PendingGuard>
+        </SuspendedGuard>
+      </AuthenticatedGuard>
+    ),
     children: [
       { index: true, element: <TeacherDashboardPage /> },
       { path: "students", element: <TeacherStudentsPage /> },
@@ -58,7 +85,17 @@ const router = createBrowserRouter([
   },
   {
     path: routes.employment.root,
-    element: <EmploymentLayout />,
+    element: (
+      <AuthenticatedGuard>
+        <SuspendedGuard>
+          <PendingGuard>
+            <RoleGuard allowedRoles={["employment_teacher"]}>
+              <EmploymentLayout />
+            </RoleGuard>
+          </PendingGuard>
+        </SuspendedGuard>
+      </AuthenticatedGuard>
+    ),
     children: [
       { index: true, element: <EmploymentDashboardPage /> },
       { path: "jobs", element: <EmploymentJobsPage /> },
@@ -70,6 +107,21 @@ const router = createBrowserRouter([
       { path: "surveys", element: <EmploymentSurveysPage /> },
       { path: "notifications", element: <EmploymentNotificationsPage /> },
     ],
+  },
+  {
+    path: routes.admin.root,
+    element: (
+      <AuthenticatedGuard>
+        <SuspendedGuard>
+          <PendingGuard>
+            <RoleGuard allowedRoles={["admin"]}>
+              <AuthLayout />
+            </RoleGuard>
+          </PendingGuard>
+        </SuspendedGuard>
+      </AuthenticatedGuard>
+    ),
+    children: [{ index: true, element: <AdminHomePage /> }],
   },
   { path: "*", element: <Navigate to={routes.login} replace /> },
 ]);

@@ -25,3 +25,5 @@ yarn-error.log*
 pnpm-debug.log*
 
 .vscode/
+
+__tmp_chrome_guard/

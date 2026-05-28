@@ -297,3 +297,141 @@ RoleScopedRoutes
 메모:
 - route guard는 user doc의 `status`와 `role`을 함께 읽어 판단한다.
 - 실제 접근 제한은 프론트 redirect만으로 끝나지 않으며, security rules에서도 같은 기준을 다시 적용해야 한다.
+
+## 8-5. users / members 분담 메모
+
+- 초기 route guard source는 `users/{uid}`로 유지한다.
+- `users/{uid}`는 global login user doc으로 보고, 빠른 role/status 판정에 사용한다.
+- `schools/{schoolId}/members/{uid}`는 school-scoped membership 문서로 보고, 학교별 소속/학과/학년/반/담당 범위/세부 permissions를 관리한다.
+- 실제 DB 접근 권한은 추후 `members` 문서와 security rules 기준으로 다시 강제한다.
+- `users/{uid}.schoolId`는 기본/현재 학교 기준으로 사용한다.
+- 멀티스쿨 확장 시 `activeSchoolId` 또는 `schoolIds` 필드 도입 가능성을 남긴다.
+
+## 3-2. suspended 상태 route 처리 방침
+
+- `status === suspended` 사용자는 role과 관계없이 `/suspended`로 보낸다.
+- `/suspended`는 문서상 공식 제한 화면 route로 둔다.
+- 실제 `/suspended` 화면 구현은 guard 코드 연결 차수에서 최소 placeholder로 진행한다.
+- 이번 단계에서는 route 계획만 고정하고, 실제 코드 구현은 하지 않는다.
+
+## DEV mock override 메모
+
+- route guard query override(`mockRole`, `mockStatus`, `mockAnonymous`)는 `import.meta.env.DEV`에서만 허용한다.
+- production build에서는 같은 query param이 있어도 무시한다.
+- 이 override는 guard 흐름 검증용 개발 보조장치이며, Firebase Auth 연결 시 제거 또는 실제 session source로 교체한다.
+
+## Firebase Auth 최소 연결 사전 설계
+
+### 1. Firebase config / env 구조
+
+권장 파일 구조:
+- `src/services/firebase/firebaseApp.ts`
+- `src/services/firebase/auth.ts`
+- `src/features/auth/AuthProvider.tsx`
+- `src/features/auth/useAuthSession.ts`
+
+환경변수 기준:
+- `.env.example`에는 아래 key 목록만 유지한다.
+  - `VITE_FIREBASE_API_KEY`
+  - `VITE_FIREBASE_AUTH_DOMAIN`
+  - `VITE_FIREBASE_PROJECT_ID`
+  - `VITE_FIREBASE_STORAGE_BUCKET`
+  - `VITE_FIREBASE_MESSAGING_SENDER_ID`
+  - `VITE_FIREBASE_APP_ID`
+  - `VITE_FIREBASE_MEASUREMENT_ID`
+  - `VITE_DEFAULT_SCHOOL_ID`
+- 실제 `.env`는 gitignore 대상 유지
+- API key 원문은 문서, 코드 블록, 캡처, commit message에 남기지 않는다.
+- Firebase config 값은 `firebaseApp.ts`에서만 읽고, feature 코드에서는 직접 `import.meta.env`를 읽지 않도록 제한한다.
+
+권장 역할:
+- `firebaseApp.ts`: Firebase app 초기화, env 검증, singleton export
+- `auth.ts`: Firebase Auth 인스턴스와 auth helper export
+
+### 2. AuthProvider / useAuthSession 전환 설계
+
+권장 구조:
+- `AuthProvider`
+  - Firebase Auth 상태 구독
+  - `currentUser`와 `users/{uid}` 문서 조회 상태를 함께 관리
+  - session 상태를 context로 노출
+- `useAuthSession()`
+  - 현재는 mock session 반환
+  - 추후에는 `AuthProvider` context를 읽는 thin hook으로 교체
+
+전환 원칙:
+- 기존 guard는 `useAuthSession()`만 의존하게 유지한다.
+- 실제 Firebase 연결 시 guard 코드는 바꾸지 않고, `useAuthSession()`의 source만 교체한다.
+- DEV mock override는 provider 내부 또는 hook 내부에서 `import.meta.env.DEV`일 때만 유지한다.
+
+### 3. session 상태 모델
+
+권장 상태:
+- `loading`
+- `anonymous`
+- `authenticated_user_loading`
+- `pending`
+- `active`
+- `suspended`
+- `error`
+
+설명:
+- `loading`: Firebase Auth 초기 상태 확인 중
+- `anonymous`: 로그인 사용자 없음
+- `authenticated_user_loading`: Auth 사용자는 있지만 `users/{uid}` 문서 조회 중
+- `pending`: user doc 확인 완료, 승인 대기
+- `active`: user doc 확인 완료, 사용 가능
+- `suspended`: user doc 확인 완료, 접근 제한
+- `error`: auth 또는 user doc 조회 실패
+
+### 4. users/{uid} 조회 설계
+
+권장 흐름:
+1. Firebase Auth에서 현재 사용자 확인
+2. 사용자 없음 -> `anonymous`
+3. 사용자 있음 -> `users/{uid}` 조회 시작
+4. 조회 중 -> `authenticated_user_loading`
+5. 문서 없음 -> `error` 또는 별도 onboarding/pending 예외 처리 검토
+6. `role` 또는 `status` 누락 -> `error`
+7. `status === pending` -> `pending`
+8. `status === suspended` -> `suspended`
+9. `status === active` + `role` 확인 완료 -> `active`
+
+예외 처리 기준:
+- 문서 없음: 기본은 `error`로 두고, 운영 정책 확정 후 `pending`으로 완화할지 검토
+- `schoolId` 없음: `error`
+- 지원하지 않는 `role`: `error`
+- 지원하지 않는 `status`: `error`
+
+메모:
+- route guard는 최종적으로 `role`, `status`, `schoolId`만 신뢰하고 redirect를 판단한다.
+- school-scoped 상세 권한은 후속 차수에서 `schools/{schoolId}/members/{uid}`로 확장한다.
+
+### 5. dev / mock 유지 방식
+
+권장 방안:
+- mock mode는 개발 생산성을 위해 유지 가능
+- 단, 우선순위는 `real session > DEV override > default mock session`이 아니라,
+  실제 Firebase 연결 이후에는 `real session`을 기본으로 하고 mock은 명시적 개발 플래그에서만 쓰게 분리하는 편이 안전하다.
+- 현재 query override(`mockRole`, `mockStatus`, `mockAnonymous`)는 `import.meta.env.DEV`에서만 허용 유지
+- 실제 Firebase 연결 후에는 다음 중 하나로 분리 제안:
+  - `VITE_USE_MOCK_AUTH=1` 전용 개발 플래그
+  - 별도 mock provider
+  - 스토리북/테스트 전용 auth adapter
+
+권장 원칙:
+- production build에서는 mock query override 완전 무시
+- mock session 코드는 제거보다 개발 전용 경로로 격리
+
+### 6. 단계별 구현 순서
+
+1. `src/services/firebase/firebaseApp.ts` 추가
+2. `src/services/firebase/auth.ts` 추가
+3. `src/features/auth/AuthProvider.tsx` 추가
+4. `AppProviders`에 `AuthProvider` 연결
+5. `useAuthSession()`을 provider 기반으로 교체
+6. Firebase Auth 현재 사용자 확인 연결
+7. `users/{uid}` read 연결
+8. route guard 회귀검증
+9. `schools/{schoolId}/members/{uid}` 후속 연결
+10. security rules는 별도 차수에서 구현
