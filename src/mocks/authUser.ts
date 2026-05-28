@@ -3,7 +3,7 @@ import type { AuthUser } from "../types/auth";
 export const mockAuthUser: AuthUser = {
   uid: "dev-employment-teacher",
   email: "employment.teacher@bmt.local",
-  displayName: "ì·¨ì—…ì§„ë¡œë¶€ ë‹´ë‹¹",
+  displayName: "Ãë¾÷Áø·ÎºÎ ´ã´ç",
   role: "employment_teacher",
   status: "active",
   schoolId: "bmt",

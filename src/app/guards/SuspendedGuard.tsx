@@ -11,7 +11,7 @@ export function SuspendedGuard({ children }: SuspendedGuardProps) {
   const session = useAuthSession();
   const location = useLocation();
 
-  if (session.isAuthenticated && session.status === "suspended") {
+  if (session.state === "suspended") {
     return <Navigate replace to={`${routes.suspended}${location.search}`} />;
   }
 

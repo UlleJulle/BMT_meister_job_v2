@@ -13,8 +13,8 @@ export function RoleGuard({ allowedRoles, children }: RoleGuardProps) {
   const session = useAuthSession();
   const location = useLocation();
 
-  if (!session.isAuthenticated) {
-    return null;
+  if (session.state !== "active") {
+    return <>{children}</>;
   }
 
   if (!allowedRoles.includes(session.user.role)) {

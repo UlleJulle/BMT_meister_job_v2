@@ -339,10 +339,12 @@ RoleScopedRoutes
   - `VITE_FIREBASE_MESSAGING_SENDER_ID`
   - `VITE_FIREBASE_APP_ID`
   - `VITE_FIREBASE_MEASUREMENT_ID`
+  - `VITE_FIRESTORE_DATABASE_ID`
   - `VITE_DEFAULT_SCHOOL_ID`
 - 실제 `.env`는 gitignore 대상 유지
 - API key 원문은 문서, 코드 블록, 캡처, commit message에 남기지 않는다.
 - Firebase config 값은 `firebaseApp.ts`에서만 읽고, feature 코드에서는 직접 `import.meta.env`를 읽지 않도록 제한한다.
+- Firestore가 named database로 구성된 경우 `VITE_FIRESTORE_DATABASE_ID`를 통해 database ID를 명시할 수 있게 유지한다.
 
 권장 역할:
 - `firebaseApp.ts`: Firebase app 초기화, env 검증, singleton export

@@ -15,17 +15,17 @@ export function getHomeRouteForRole(role: UserRole) {
 }
 
 export function getRedirectRouteForSession(session: AuthSession) {
-  if (!session.isAuthenticated) {
-    return routes.login;
+  switch (session.state) {
+    case "pending":
+      return routes.pending;
+    case "suspended":
+      return routes.suspended;
+    case "active":
+      return getHomeRouteForRole(session.user.role);
+    case "anonymous":
+    case "error":
+      return routes.login;
+    default:
+      return null;
   }
-
-  if (session.status === "pending") {
-    return routes.pending;
-  }
-
-  if (session.status === "suspended") {
-    return routes.suspended;
-  }
-
-  return getHomeRouteForRole(session.user.role);
 }

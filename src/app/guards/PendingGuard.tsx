@@ -11,7 +11,7 @@ export function PendingGuard({ children }: PendingGuardProps) {
   const session = useAuthSession();
   const location = useLocation();
 
-  if (session.isAuthenticated && session.status === "pending") {
+  if (session.state === "pending") {
     return <Navigate replace to={`${routes.pending}${location.search}`} />;
   }
 
