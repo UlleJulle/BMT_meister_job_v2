@@ -174,3 +174,9 @@ v2 ?묒뾽 ?쒖꽌.
 
 - Firebase Auth 최소 연결 시 Firestore DB가 named database일 수 있으므로 `VITE_FIRESTORE_DATABASE_ID`로 명시 가능하게 유지한다.
 
+
+## Firestore schema/rules 1차 설계 메모
+
+- 핵심 컬렉션(users, members, jobPostings, companies, pplications, students) 1차 schema는 docs/FIRESTORE_SCHEMA_V1.md를 기준으로 정리한다.
+- role별 Firestore rules 초안은 docs/FIRESTORE_RULES_DRAFT.md에 두고, 이번 단계에서는 배포하지 않는다.
+- 실제 CRUD 연결 전까지 write path는 계속 닫아 둔다.

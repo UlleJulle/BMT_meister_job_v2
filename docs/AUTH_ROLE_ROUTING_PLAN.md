@@ -409,6 +409,13 @@ RoleScopedRoutes
 - route guard는 최종적으로 `role`, `status`, `schoolId`만 신뢰하고 redirect를 판단한다.
 - school-scoped 상세 권한은 후속 차수에서 `schools/{schoolId}/members/{uid}`로 확장한다.
 
+### 4-1. school-scoped data source 메모
+
+- route guard의 1차 source는 계속 `users/{uid}`로 유지한다.
+- 실제 school-scoped read/write 권한의 기준 문서는 `schools/{schoolId}/members/{uid}`로 본다.
+- `jobPostings`, `companies`, `applications`, `students` 같은 운영 컬렉션은 모두 `schools/{schoolId}` 하위에 둔다.
+- 세부 schema는 `docs/FIRESTORE_SCHEMA_V1.md`, rules 초안은 `docs/FIRESTORE_RULES_DRAFT.md`를 기준으로 이어간다.
+
 ### 5. dev / mock 유지 방식
 
 권장 방안:

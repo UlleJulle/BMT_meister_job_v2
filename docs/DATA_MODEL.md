@@ -484,3 +484,8 @@ type UserDoc = {
 - `schools/{schoolId}/members/{uid}`는 route guard 직후가 아니라, school-scoped permission/profile 확장 단계에서 연결한다.
 - 실제 Firebase config 값은 `firebaseApp.ts`로만 모으고 feature 코드에서 직접 env를 읽지 않는 구조를 권장한다.
 - session 상태에 `authenticated_user_loading`과 `error`를 포함해, Auth 성공 후 user doc 조회 단계와 오류 단계를 분리한다.
+
+## Firestore schema v1 draft 메모
+
+- users / members / jobPostings / companies / applications / students 1차 schema는 docs/FIRESTORE_SCHEMA_V1.md를 기준으로 본다.
+- school-scoped 운영 데이터는 schools/{schoolId} 하위에 두고, users/{uid}는 route guard용 최소 문서로 유지한다.
