@@ -1,0 +1,424 @@
+.page {
+  display: grid;
+  gap: 8px;
+  width: min(100%, 960px);
+}
+
+.header {
+  display: grid;
+  gap: 1px;
+  padding-top: 0;
+}
+
+.eyebrow {
+  color: var(--color-text-secondary);
+  font-size: 11px;
+  font-weight: var(--weight-semibold);
+}
+
+.header h1 {
+  font-size: clamp(19px, 1.7vw, 23px);
+  font-weight: var(--weight-semibold);
+  letter-spacing: -0.02em;
+  line-height: 1.22;
+}
+
+.description {
+  color: var(--color-text-secondary);
+  font-size: var(--text-xs);
+  line-height: 1.4;
+}
+
+.topBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.summaryRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.summaryChip {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  min-height: 26px;
+  padding: 0 9px;
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.66);
+  color: var(--color-text-secondary);
+  font-size: 11px;
+}
+
+.summaryChip strong {
+  color: var(--color-text-primary);
+  font-size: 11px;
+  font-weight: var(--weight-semibold);
+}
+
+.viewSwitch {
+  display: inline-flex;
+  gap: 4px;
+  padding: 3px;
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.viewTab {
+  min-height: 36px;
+  padding: 0 11px;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: transparent;
+  color: var(--color-text-secondary);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-medium);
+}
+
+.viewTabActive {
+  background: var(--color-primary-subtle);
+  color: var(--color-primary);
+}
+
+.grid,
+.calendarLayout {
+  display: grid;
+  grid-template-columns: minmax(0, 308px) minmax(0, 1fr);
+  gap: 10px;
+  align-items: start;
+}
+
+.mainColumn {
+  display: grid;
+  gap: 10px;
+}
+
+.sidePanel,
+.section,
+.calendarPanel {
+  display: grid;
+  gap: 8px;
+  align-content: start;
+  padding: 10px;
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: var(--shadow-xs);
+}
+
+.panelHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.panelHeader h2 {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+}
+
+.panelHeader span {
+  color: var(--color-text-tertiary);
+  font-size: 10px;
+  white-space: nowrap;
+}
+
+.helperText {
+  color: var(--color-text-tertiary);
+  font-size: 10px;
+  line-height: 1.35;
+}
+
+.panelList {
+  display: grid;
+  gap: 6px;
+}
+
+.scheduleCard {
+  display: grid;
+  grid-template-columns: 54px minmax(0, 1fr);
+  gap: 8px;
+  align-items: start;
+  padding: 8px 9px;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 10px;
+  background: var(--color-bg-surface);
+}
+
+.timeBlock {
+  display: grid;
+  gap: 1px;
+}
+
+.timeBlock strong {
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  line-height: 1.2;
+}
+
+.timeBlock span {
+  color: var(--color-text-secondary);
+  font-size: 10px;
+}
+
+.contentBlock {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.titleRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+.titleRow h3 {
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  line-height: 1.35;
+  flex: 1;
+  min-width: 0;
+}
+
+.badge {
+  display: inline-flex;
+  gap: 4px;
+  align-items: center;
+  font-size: 10px;
+  font-weight: var(--weight-medium);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.badgeDot,
+.dayDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.badgeOfficial,
+.dayDotOfficial {
+  color: var(--color-primary);
+}
+
+.badgePersonal,
+.dayDotPersonal {
+  color: var(--color-warning);
+}
+
+.detail {
+  color: var(--color-text-secondary);
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+.meta {
+  color: var(--color-text-tertiary);
+  font-size: 10px;
+  line-height: 1.3;
+}
+
+.placeholderButton {
+  min-height: 34px;
+  padding: 0 8px;
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-sm);
+  background: var(--color-bg-subtle);
+  color: var(--color-text-tertiary);
+  font-size: 10px;
+}
+
+.weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 4px;
+  color: var(--color-text-tertiary);
+  font-size: 10px;
+  text-align: center;
+}
+
+.calendarGrid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 4px;
+}
+
+.dayCell {
+  display: grid;
+  gap: 6px;
+  justify-items: center;
+  min-height: 52px;
+  padding: 7px 4px 6px;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 10px;
+  background: var(--color-bg-surface);
+}
+
+.dayCellActive {
+  border-color: rgba(37, 99, 235, 0.18);
+  background: var(--color-primary-subtle);
+}
+
+.dayCellMuted {
+  color: var(--color-text-tertiary);
+}
+
+.dayNumber {
+  font-size: 11px;
+  font-weight: var(--weight-semibold);
+}
+
+.dayDots {
+  display: inline-flex;
+  gap: 4px;
+  align-items: center;
+  min-height: 6px;
+}
+
+.calendarLegend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  color: var(--color-text-secondary);
+  font-size: 10px;
+}
+
+.calendarLegend span {
+  display: inline-flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.emptyCard {
+  display: grid;
+  gap: 4px;
+  padding: 10px;
+  border: 1px dashed var(--color-border-default);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.62);
+}
+
+.emptyCard strong {
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+}
+
+.emptyCard span {
+  color: var(--color-text-secondary);
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+@media (max-width: 760px) {
+  .page {
+    width: 100%;
+    gap: 8px;
+    padding-top: 2px;
+  }
+
+  .header {
+    gap: 1px;
+  }
+
+  .header h1 {
+    font-size: 19px;
+  }
+
+  .description {
+    max-width: 100%;
+    font-size: 11px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .topBar {
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .summaryRow {
+    gap: 5px;
+  }
+
+  .summaryChip {
+    min-height: 24px;
+    padding: 0 8px;
+    font-size: 10px;
+  }
+
+  .summaryChip strong {
+    font-size: 10px;
+  }
+
+  .viewTab {
+    min-height: 44px;
+    padding: 0 10px;
+    font-size: 10px;
+  }
+
+  .grid,
+  .calendarLayout {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .sidePanel,
+  .section,
+  .calendarPanel {
+    gap: 7px;
+    padding: 9px;
+  }
+
+  .scheduleCard {
+    grid-template-columns: 50px minmax(0, 1fr);
+    gap: 7px;
+    padding: 7px 8px;
+  }
+
+  .titleRow {
+    gap: 6px;
+    align-items: flex-start;
+    flex-direction: row;
+  }
+
+  .panelHeader {
+    align-items: flex-start;
+  }
+
+  .panelHeader span {
+    font-size: 10px;
+  }
+
+  .placeholderButton {
+    min-height: 44px;
+    padding: 0 7px;
+    font-size: 10px;
+  }
+
+  .weekdays {
+    font-size: 9px;
+  }
+
+  .dayCell {
+    min-height: 42px;
+    gap: 4px;
+    padding: 5px 3px;
+  }
+
+  .dayNumber {
+    font-size: 10px;
+  }
+}

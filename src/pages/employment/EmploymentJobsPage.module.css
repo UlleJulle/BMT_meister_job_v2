@@ -1,0 +1,349 @@
+.page {
+  display: grid;
+  gap: var(--space-4);
+  padding-top: var(--space-1);
+}
+
+.pageHeader {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.eyebrow {
+  margin: 0 0 var(--space-1);
+  color: var(--color-text-secondary);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(19px, 1.8vw, 24px);
+  font-weight: var(--weight-semibold);
+  line-height: 1.22;
+}
+
+.description {
+  max-width: 58ch;
+  margin: 4px 0 0;
+  color: var(--color-text-secondary);
+  font-size: var(--text-sm);
+  line-height: 1.45;
+}
+
+.summaryGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-3);
+}
+
+.summaryCard,
+.filterSection,
+.listSection,
+.jobCard {
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: var(--shadow-xs);
+}
+
+.summaryCard {
+  display: grid;
+  gap: 4px;
+  padding: 14px var(--space-4);
+}
+
+.summaryLabel {
+  color: var(--color-text-secondary);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+}
+
+.summaryValue {
+  font-size: clamp(18px, 1.8vw, 24px);
+  font-weight: var(--weight-semibold);
+  line-height: 1;
+}
+
+.filterSection,
+.listSection {
+  padding: var(--space-4);
+}
+
+.filterHeader,
+.listHeader {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  margin-bottom: var(--space-3);
+}
+
+.filterTitle,
+.listTitle {
+  margin: 0;
+  font-size: var(--text-base);
+  font-weight: var(--weight-semibold);
+}
+
+.filterHint,
+.listDescription {
+  color: var(--color-text-secondary);
+  font-size: var(--text-xs);
+}
+
+.filterRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.filterChip {
+  min-height: 36px;
+  padding: 0 12px;
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--color-text-secondary);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+}
+
+.activeFilterChip {
+  border-color: var(--color-primary);
+  background: var(--color-primary-subtle);
+  color: var(--color-primary);
+}
+
+.cardList {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.jobCard {
+  display: grid;
+  gap: var(--space-3);
+  padding: var(--space-4);
+}
+
+.cardTop {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-4);
+  align-items: flex-start;
+}
+
+.cardIdentity {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+
+.companyType {
+  color: var(--color-text-secondary);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+}
+
+.companyName {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  line-height: 1.35;
+}
+
+.jobTitle {
+  margin: 0;
+  font-size: var(--text-md);
+  font-weight: var(--weight-semibold);
+  line-height: 1.3;
+}
+
+.cardStatus {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.statusBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 28px;
+  padding: 0 10px;
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-full);
+  background: var(--color-bg-subtle);
+  color: var(--color-text-secondary);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  white-space: nowrap;
+}
+
+.statusBadge span {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: currentColor;
+}
+
+.success {
+  color: var(--color-success);
+}
+
+.warning {
+  color: var(--color-warning);
+}
+
+.danger {
+  color: var(--color-danger);
+}
+
+.neutral {
+  color: var(--color-text-secondary);
+}
+
+.metaRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 18px;
+  color: var(--color-text-secondary);
+  font-size: var(--text-xs);
+}
+
+.deadlineRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--color-border-subtle);
+}
+
+.deadlineLabel {
+  display: block;
+  margin-bottom: 2px;
+  color: var(--color-text-secondary);
+  font-size: var(--text-xs);
+}
+
+.deadlineRow strong {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+}
+
+.note {
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-size: var(--text-xs);
+  line-height: 1.45;
+}
+
+.actionRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.primaryAction,
+.secondaryAction {
+  min-height: 38px;
+  padding: 0 12px;
+  border-radius: var(--radius-sm);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+}
+
+.primaryAction {
+  border: 1px solid var(--color-primary);
+  background: var(--color-primary-subtle);
+  color: var(--color-primary);
+}
+
+.secondaryAction {
+  border: 1px solid var(--color-border-default);
+  background: rgba(255, 255, 255, 0.8);
+  color: var(--color-text-tertiary);
+  cursor: default;
+}
+
+@media (max-width: 1080px) {
+  .summaryGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .page {
+    gap: var(--space-3);
+    padding-top: 2px;
+  }
+
+  .title {
+    font-size: 19px;
+  }
+
+  .description {
+    overflow: hidden;
+    max-width: none;
+    font-size: var(--text-xs);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .summaryGrid {
+    gap: 8px;
+  }
+
+  .summaryCard,
+  .filterSection,
+  .listSection,
+  .jobCard {
+    padding: 12px;
+  }
+
+  .filterHeader,
+  .listHeader {
+    margin-bottom: 10px;
+  }
+
+  .filterRow {
+    gap: 6px;
+  }
+
+  .filterChip {
+    min-height: 34px;
+    padding: 0 10px;
+  }
+
+  .cardTop {
+    gap: 10px;
+    flex-direction: column;
+  }
+
+  .cardStatus {
+    justify-content: flex-start;
+  }
+
+  .jobTitle {
+    font-size: 15px;
+  }
+
+  .deadlineRow {
+    align-items: flex-start;
+  }
+
+  .actionRow {
+    gap: 6px;
+  }
+
+  .primaryAction,
+  .secondaryAction {
+    min-height: 36px;
+    padding: 0 10px;
+  }
+}

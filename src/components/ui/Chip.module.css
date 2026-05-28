@@ -1,0 +1,26 @@
+.chip {
+  min-height: 32px;
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-full);
+  padding: 0 var(--space-3);
+  background: var(--color-bg-surface);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+}
+
+.chip:hover {
+  background: var(--color-bg-hover);
+}
+
+.chip:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+}
+
+.selected {
+  border-color: var(--color-primary);
+  background: var(--color-bg-selected);
+  color: var(--color-primary);
+}

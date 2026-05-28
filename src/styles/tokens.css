@@ -1,0 +1,121 @@
+/* BMT Job Platform v2 — Design Tokens */
+/* Updated: warm ivory bg, warm-gray border, quieter shadow, corrected radius */
+:root {
+  /* ── Primary blue: action / link / selected state / focus ring 전용 ── */
+  --color-primary: #2563eb;
+  --color-primary-hover: #1d4ed8;
+  --color-primary-subtle: #eff6ff;
+
+  /* ── Semantic status: 상태 전달 전용, 장식 사용 금지 ── */
+  --color-success: #16a34a;
+  --color-success-subtle: #f0fdf4;
+  --color-warning: #d97706;
+  --color-warning-subtle: #fffbeb;
+  --color-danger: #dc2626;
+  --color-danger-subtle: #fef2f2;
+
+  /* ── Background: warm ivory / off-white 계열 ── */
+  /* 변경: #f8fafc(cool slate) → #faf9f7(warm ivory) */
+  --color-bg-page: #faf9f7;
+  /* 변경: #ffffff → #fffffe (사실상 white, warm 기조 유지용 주석) */
+  --color-bg-surface: #ffffff;
+  /* 변경: #f1f5f9(cool) → #f5f4f2(warm subtle) */
+  --color-bg-subtle: #f5f4f2;
+  /* 변경: #f1f5f9 → #f0eeec(warm hover) */
+  --color-bg-hover: #f0eeec;
+  /* 변경: #e2e8f0(cool) → #e8e5e1(warm active) */
+  --color-bg-active: #e8e5e1;
+  --color-bg-selected: var(--color-primary-subtle);
+
+  /* ── Text: 기존 유지 (slate 계열, 충분히 neutral) ── */
+  --color-text-primary: #0f172a;
+  --color-text-secondary: #475569;
+  --color-text-tertiary: #94a3b8;
+  --color-text-inverse: #ffffff;
+
+  /* ── Border: cool gray → warm-gray ── */
+  /* 변경: #e2e8f0(cool slate-200) → #e5e2de(warm-gray) */
+  --color-border-default: #e5e2de;
+  /* 변경: #f1f5f9(cool) → #edeae6(warm subtle) */
+  --color-border-subtle: #edeae6;
+  --color-overlay: rgba(15, 23, 42, 0.42);
+
+  /* ── Typography: 기존 유지 ── */
+  --text-xs: 12px;
+  --text-sm: 13px;
+  --text-base: 15px;
+  --text-md: 16px;
+  --text-lg: 18px;
+  --text-xl: 24px;
+  --text-2xl: 28px;
+
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  /* ── Spacing: 기존 유지 ── */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+
+  /* ── Radius: 버튼 8px / 카드 12px / 큰 컨테이너 16px 기준 ── */
+  /* 변경: sm 6→8, md 10→12, lg 14→16, xl 18→20 */
+  --radius-sm: 8px;   /* 버튼, input */
+  --radius-md: 12px;  /* 카드 */
+  --radius-lg: 16px;  /* 큰 패널, drawer, modal */
+  --radius-xl: 20px;  /* 대형 modal, bottom sheet */
+  --radius-full: 999px;
+
+  /* ── Shadow: 조용하게 낮춤 ── */
+  /* 변경: blur/opacity 전반적으로 축소 */
+  --shadow-xs: 0 1px 2px rgba(30, 20, 10, 0.04);
+  --shadow-sm: 0 2px 8px rgba(30, 20, 10, 0.05);
+  --shadow-md: 0 4px 16px rgba(30, 20, 10, 0.07);
+  --shadow-xl: 0 12px 36px rgba(30, 20, 10, 0.12);
+  --shadow-focus: 0 0 0 3px rgba(37, 99, 235, 0.18);
+  --shadow-focus-danger: 0 0 0 3px rgba(220, 38, 38, 0.18);
+
+  /* ── Sizes: 기존 유지 ── */
+  --size-input-sm: 32px;
+  --size-input-md: 40px;
+  --size-input-lg: 44px;
+  --size-touch-target: 44px;
+  --size-gnb-height: 56px;
+  --size-sidebar-width: 260px;
+
+  /* ── Layout: 기존 유지 ── */
+  --layout-page-max-width: 1280px;
+  --layout-readable-width: 760px;
+  --layout-form-width: 420px;
+  --layout-modal-width-sm: 420px;
+  --layout-modal-width-md: 640px;
+  --layout-modal-width-lg: 880px;
+  --layout-content-padding: var(--space-6);
+  --layout-section-gap: var(--space-8);
+  --layout-card-gap: var(--space-4);
+
+  /* ── Z-index: 기존 유지 ── */
+  --z-sticky: 100;
+  --z-drawer: 300;
+  --z-modal: 500;
+  --z-toast: 700;
+
+  /* ── Admin sidebar: 기존 유지 ── */
+  --admin-sidebar-bg: #0f172a;
+  --admin-sidebar-text: #cbd5e1;
+  --admin-sidebar-text-active: #ffffff;
+  --admin-sidebar-icon: #94a3b8;
+  --admin-sidebar-item-active: rgba(37, 99, 235, 0.22);
+
+  /* ── Skeleton: bg-subtle 변경에 맞춰 조정 ── */
+  /* 변경: base #f1f5f9 → #f0eeec, highlight #f8fafc → #faf9f7 */
+  --color-skeleton-base: #f0eeec;
+  --color-skeleton-highlight: #faf9f7;
+}
