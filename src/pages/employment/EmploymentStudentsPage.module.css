@@ -87,6 +87,28 @@
   padding: 12px;
 }
 
+.stateCard {
+  display: grid;
+  gap: 4px;
+  padding: 10px;
+  border: 1px dashed var(--color-border-default);
+  border-radius: var(--radius-md);
+  background: rgba(250, 249, 247, 0.82);
+}
+
+.stateTitle {
+  font-size: 12px;
+  font-weight: var(--weight-semibold);
+}
+
+.stateDescription,
+.stateMeta {
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-size: 11px;
+  line-height: 1.4;
+}
+
 .sectionHeader {
   display: flex;
   align-items: flex-end;
