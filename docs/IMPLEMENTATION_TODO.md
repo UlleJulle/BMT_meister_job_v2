@@ -180,3 +180,10 @@ v2 ?묒뾽 ?쒖꽌.
 - 핵심 컬렉션(users, members, jobPostings, companies, pplications, students) 1차 schema는 docs/FIRESTORE_SCHEMA_V1.md를 기준으로 정리한다.
 - role별 Firestore rules 초안은 docs/FIRESTORE_RULES_DRAFT.md에 두고, 이번 단계에서는 배포하지 않는다.
 - 실제 CRUD 연결 전까지 write path는 계속 닫아 둔다.
+
+## /employment/jobs Firestore read-only 1차 메모
+
+- schools/{schoolId}/jobPostings read-only 연결을 먼저 진행한다.
+- schoolId는 session 우선, 없으면 VITE_DEFAULT_SCHOOL_ID 또는 mt fallback을 사용한다.
+- Firestore read 실패를 mock으로 숨기지 않고 loading / empty / permission-denied / unavailable / error 상태로 노출한다.
+- write path(create/update/delete)는 계속 닫아 둔다.
