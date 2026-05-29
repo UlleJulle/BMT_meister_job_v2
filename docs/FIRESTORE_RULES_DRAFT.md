@@ -228,3 +228,38 @@ match /schools/{schoolId}/students/{studentId} {
 3. `employment_teacher` write 범위 세분화
 4. `general_teacher` read-only 범위 확정
 5. rules syntax 검증 후 staging 환경에서만 테스트
+
+---
+
+## 12. 2026-05-29 read-only rules 상태 메모
+
+현재 live read 검증 완료 기준:
+
+- `users/{uid}`: 본인 read 허용, write false
+- `schools/{schoolId}/jobPostings/{jobId}`:
+  - `student / general_teacher / employment_teacher / admin` read 허용
+  - write false
+- `schools/{schoolId}/companies/{companyId}`:
+  - `employment_teacher / admin` read 허용
+  - write false
+- `schools/{schoolId}/students/{studentId}`:
+  - `employment_teacher / admin` read 허용
+  - write false
+- `schools/{schoolId}/applications/{applicationId}`:
+  - `employment_teacher / admin` read 허용
+  - write false
+
+applications 초안은 현재 아래 기준으로 유지한다.
+
+```rules
+match /schools/{schoolId}/applications/{applicationId} {
+  allow read: if isSameSchool(schoolId)
+    && userDoc().data.role in ["employment_teacher", "admin"];
+  allow write: if false;
+}
+```
+
+주의:
+
+- 이 문서는 rules 초안 정리용이다.
+- 실제 rules 배포는 Firebase Console에서 수동 관리 중이며, 이번 문서 작업에서 배포는 하지 않는다.

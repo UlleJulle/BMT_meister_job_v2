@@ -27,3 +27,4 @@ pnpm-debug.log*
 .vscode/
 
 __tmp_chrome_guard/
+__tmp_*.log

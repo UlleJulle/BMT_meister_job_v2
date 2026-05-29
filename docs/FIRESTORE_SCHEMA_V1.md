@@ -343,3 +343,46 @@ type StudentDoc = {
 - `schools/{schoolId}/members/{uid}` 실제 read 연결
 - schedules / content / surveys / notifications의 상세 CRUD schema 확정
 
+
+---
+
+## 11. 2026-05-29 read-only 연결 완료 상태
+
+현재 Firestore read-only 연결이 실제 live 검증까지 끝난 컬렉션은 아래 4개다.
+
+```txt
+/schools/{schoolId}/jobPostings/{jobId}
+/schools/{schoolId}/companies/{companyId}
+/schools/{schoolId}/students/{studentId}
+/schools/{schoolId}/applications/{applicationId}
+```
+
+현재 기준 검증 완료 경로:
+
+```txt
+/schools/bmt/jobPostings
+/schools/bmt/companies
+/schools/bmt/students
+/schools/bmt/applications
+```
+
+공통 구현 원칙:
+
+- page 안에 직접 긴 Firestore query를 넣지 않고 `src/services/firestore/*`로 분리
+- `getDocs + collection + query + orderBy("createdAt", "desc")`만 사용
+- Firestore write API(`addDoc`, `setDoc`, `updateDoc`, `deleteDoc`) 사용 금지
+- Firestore read 실패를 mock fallback으로 숨기지 않음
+- `loading / empty / permission-denied / unavailable / error` 상태를 각각 노출
+
+현재 연결된 service:
+
+- `src/services/firestore/jobPostings.ts`
+- `src/services/firestore/companies.ts`
+- `src/services/firestore/students.ts`
+- `src/services/firestore/applications.ts`
+
+운영 메모:
+
+- Firestore databaseId는 named database `default`
+- 로컬 환경에서는 `.env`의 `VITE_FIRESTORE_DATABASE_ID=default`를 유지한다
+- 현재 범위에서는 Storage / Functions 요청도 사용하지 않는다

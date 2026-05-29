@@ -444,3 +444,31 @@ RoleScopedRoutes
 8. route guard 회귀검증
 9. `schools/{schoolId}/members/{uid}` 후속 연결
 10. security rules는 별도 차수에서 구현
+
+---
+
+## 7. 2026-05-29 현재 연결 상태 메모
+
+현재 Auth / role routing 기준으로 아래 사항이 live 검증까지 완료됐다.
+
+- Firebase Auth 실제 로그인 성공
+- `users/{uid}` read 성공
+- `student / general_teacher / employment_teacher / admin` role redirect 정상
+- smoke test 통과:
+  - `student` → `/student`
+  - `general_teacher` → `/teacher`
+  - `employment_teacher` → `/employment`
+  - `admin` → `/admin`
+
+현재 route guard 정책 메모:
+
+- `student`가 `/employment`, `/teacher`, `/admin` 접근 시 `/student`로 redirect
+- `general_teacher`가 `/employment`, `/student`, `/admin` 접근 시 `/teacher`로 redirect
+- `employment_teacher`가 `/student`, `/teacher`, `/admin` 접근 시 `/employment`로 redirect
+- `admin`이 `/employment`, `/teacher`, `/student` 접근 시 `/admin`으로 redirect
+
+Firestore 관련 메모:
+
+- Firestore databaseId는 named database `default`
+- 로컬 환경에서는 `.env`에 `VITE_FIRESTORE_DATABASE_ID=default`가 필요하다
+
